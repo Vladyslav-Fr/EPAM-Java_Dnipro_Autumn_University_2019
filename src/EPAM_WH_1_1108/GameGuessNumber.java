@@ -15,12 +15,15 @@ public class GameGuessNumber {
         do {
             enterNum = gameGuessNumber.setNum();
             if (enterNum > ranNum) {
-                if ((enterNum - ranNum)>10){
-                System.out.print("Too high. Enter next an integer number: ");}
-                else {System.out.print("Warmer but high. Enter next an integer number: ");}
+                if ((enterNum - ranNum) > 10) {
+                    System.out.print("Too high. Enter next an integer number: ");
+                } else {
+                    System.out.print("Warmer but high. Enter next an integer number: ");
+                }
             } else if (enterNum < ranNum) {
-                if ((ranNum - enterNum)>10){
-                    System.out.print("Too low. Enter next an integer number: ");} else {
+                if ((ranNum - enterNum) > 10) {
+                    System.out.print("Too low. Enter next an integer number: ");
+                } else {
                     System.out.print("Warmer but low. Enter next an integer number: ");
                 }
             } else {
