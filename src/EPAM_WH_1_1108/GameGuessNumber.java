@@ -20,7 +20,6 @@ public class GameGuessNumber {
 
     private void game() {
         int ranNum, enterNum, attempts = 0, warmer = 10;
-
         ranNum = randomIntNumFrom0to1000();
 
         System.out.print(GUESS_AND_ENTER);
