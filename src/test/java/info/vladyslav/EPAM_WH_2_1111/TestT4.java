@@ -7,7 +7,7 @@ import java.util.Arrays;
 import static org.junit.Assert.assertEquals;
 
 public class TestT4 {
-    T4NumberInArrayOfDigitsPlusOne testT4 = new T4NumberInArrayOfDigitsPlusOne();
+    private T4NumberInArrayOfDigitsPlusOne testT4 = new T4NumberInArrayOfDigitsPlusOne();
 
     @Test
     public void setTestT4() {

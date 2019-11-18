@@ -3,12 +3,12 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 public class TestT2 {
-    T2RemoveValueInstancesInArray t2RemoveValueInstancesInArray = new T2RemoveValueInstancesInArray();
+    private T2RemoveValueInstancesInArray t2test = new T2RemoveValueInstancesInArray();
 
     @Test
     public void setT2RemoveValueInstancesInArray(){
-        assertEquals(t2RemoveValueInstancesInArray.run(new int[]{3,2,2,3}, 3),2);
-        assertEquals(t2RemoveValueInstancesInArray.run(new int[]{0,1,2,2,3,0,4,2}, 2),5);
+        assertEquals(t2test.run(new int[]{3,2,2,3}, 3),2);
+        assertEquals(t2test.run(new int[]{0,1,2,2,3,0,4,2}, 2),5);
     }
 
 }

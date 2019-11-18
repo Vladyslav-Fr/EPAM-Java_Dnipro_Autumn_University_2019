@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class T2RemoveValueInstancesInArray {
 
 
-    public static int run(int[] arr, int val) {
+    public int run(int[] arr, int val) {
 
         int count = 0;
         int last = arr.length - 1;

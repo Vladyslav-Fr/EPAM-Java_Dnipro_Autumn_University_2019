@@ -7,7 +7,7 @@ import java.util.Arrays;
 import static org.junit.Assert.assertEquals;
 
 public class TestT3 {
-    T3ReturnTwoIndicesOfSumTarget t3 = new T3ReturnTwoIndicesOfSumTarget();
+    private T3ReturnTwoIndicesOfSumTarget t3 = new T3ReturnTwoIndicesOfSumTarget();
 
     @Test
     public void testT3() {
