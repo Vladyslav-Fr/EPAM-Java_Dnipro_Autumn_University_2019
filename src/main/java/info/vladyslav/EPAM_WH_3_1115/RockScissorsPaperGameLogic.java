@@ -7,15 +7,14 @@ public class RockScissorsPaperGameLogic {
     enum Figures {
         ROCK, SCISSORS, PAPER
     }
-
-    public static final String ENTER_NUM = "Enter a number from 1 to 3. \n1 = Rock; \n2 = Scissors; \n3 = Paper";
-    public static final String INVALID_INPUT_DIGIT = "\"Invalid input. Your choice is outside the range of 1-3 digits!\nPlease re-enter!";
-    public static final String INVALID_INPUT_NOT_NUM = "Invalid input. It's not a number. Please re-enter!";
-    public static final String WIN = "You are win! Congrats!";
-    public static final String DROWN = "Drown";
-    public static final String LOSE = "You are lose! Better luck next time";
-    public static final String COMPUTER_SELECT = "Computer select is: ";
-    public static final String PLAYER_CHOSE = " and the player chose: ";
+    private static final String ENTER_NUM = "Enter a number from 1 to 3. \n1 = Rock; \n2 = Scissors; \n3 = Paper";
+    private static final String INVALID_INPUT_DIGIT = "\"Invalid input. Your choice is outside the range of 1-3 digits!\nPlease re-enter!";
+    private static final String INVALID_INPUT_NOT_NUM = "Invalid input. It's not a number. Please re-enter!";
+    private static final String WIN = "You are win! Congrats!";
+    private static final String DROWN = "Drown";
+    private static final String LOSE = "You are lose! Better luck next time";
+    private static final String COMPUTER_SELECT = "Computer select is: ";
+    private static final String PLAYER_CHOSE = " and the player chose: ";
 
     private Figures computerSelection;
     private Figures choiceOfPlayer;
@@ -35,7 +34,6 @@ public class RockScissorsPaperGameLogic {
 
         System.out.println(ttt.getComputerSelection() + "" + ttt.getChoiceOfPlayer());
     }
-
 
     void run() {
         setRandomComputerSelection();
