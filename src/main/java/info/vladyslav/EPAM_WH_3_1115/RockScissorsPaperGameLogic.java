@@ -7,6 +7,7 @@ public class RockScissorsPaperGameLogic {
     enum Figures {
         ROCK, SCISSORS, PAPER
     }
+
     private static final String ENTER_NUM = "Enter a number from 1 to 3. \n1 = Rock; \n2 = Scissors; \n3 = Paper";
     private static final String INVALID_INPUT_DIGIT = "\"Invalid input. Your choice is outside the range of 1-3 digits!\nPlease re-enter!";
     private static final String INVALID_INPUT_NOT_NUM = "Invalid input. It's not a number. Please re-enter!";
@@ -25,14 +26,6 @@ public class RockScissorsPaperGameLogic {
 
     public Figures getChoiceOfPlayer() {
         return choiceOfPlayer;
-    }
-
-    public static void main(String[] args) {
-        RockScissorsPaperGameLogic ttt = new RockScissorsPaperGameLogic();
-        ttt.setRandomComputerSelection();
-        ttt.setChoiceOfPlayer();
-
-        System.out.println(ttt.getComputerSelection() + "" + ttt.getChoiceOfPlayer());
     }
 
     void run() {
@@ -91,6 +84,5 @@ public class RockScissorsPaperGameLogic {
             System.out.println(LOSE);
         }
         System.out.println(COMPUTER_SELECT + computerSelection + PLAYER_CHOSE + choiceOfPlayer);
-
     }
 }
