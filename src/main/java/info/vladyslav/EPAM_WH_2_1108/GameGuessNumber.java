@@ -1,4 +1,4 @@
-package info.vladyslav.EPAM_WH_1_1108;
+package info.vladyslav.EPAM_WH_2_1108;
 
 import java.util.Random;
 import java.util.Scanner;

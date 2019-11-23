@@ -1,7 +1,4 @@
-package info.vladyslav.EPAM_WH_2_1111;
-
-import java.lang.reflect.Array;
-import java.util.Arrays;
+package info.vladyslav.EPAM_WH_3_1111;
 
 public class T4NumberInArrayOfDigitsPlusOne {
 

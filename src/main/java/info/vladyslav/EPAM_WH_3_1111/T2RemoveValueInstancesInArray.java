@@ -1,4 +1,4 @@
-package info.vladyslav.EPAM_WH_2_1111;
+package info.vladyslav.EPAM_WH_3_1111;
 
 import java.util.Arrays;
 
