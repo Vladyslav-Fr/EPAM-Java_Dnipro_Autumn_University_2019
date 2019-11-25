@@ -8,7 +8,6 @@ public class ReceiptApplicationRun {
         Controller controller = new Controller();
         controller.run();
     }
-
 }
 
 class Model {
