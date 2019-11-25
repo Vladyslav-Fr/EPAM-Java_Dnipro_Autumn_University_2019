@@ -1,4 +1,4 @@
-package info.vladyslav.EPAM_WH_4_1118;
+package info.vladyslav.EPAM_HW_4_1118;
 
 import org.junit.Test;
 

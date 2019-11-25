@@ -1,10 +1,10 @@
-package info.vladyslav.EPAM_WH_3_1115;
+package info.vladyslav.EPAM_HW_3_1115;
 
 
 import org.junit.Test;
 
 
-import static info.vladyslav.EPAM_WH_3_1115.RockScissorsPaperGameLogic.Figures.*;
+import static info.vladyslav.EPAM_HW_3_1115.RockScissorsPaperGameLogic.Figures.*;
 import static org.junit.Assert.*;
 
 public class RockScissorsPaperGameLogicTest {
