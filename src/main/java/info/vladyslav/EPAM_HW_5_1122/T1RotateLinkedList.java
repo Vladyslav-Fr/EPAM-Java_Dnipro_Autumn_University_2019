@@ -4,13 +4,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
+ * Task 1
  * Given a linked list, rotate the list to the right by k places, where k is non-negative
  */
 
 public class T1RotateLinkedList {
     private List<Integer> rotor;
 
-    public List<Integer> getRotor() {
+    private List<Integer> getRotor() {
         return rotor;
     }
 
