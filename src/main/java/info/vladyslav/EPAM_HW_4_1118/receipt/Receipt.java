@@ -1,7 +1,10 @@
 package info.vladyslav.EPAM_HW_4_1118.receipt;
 
-class Model {
+class Receipt {
+    String date;
+    double amount;
     private double discount;
+    double tolalAmount;
 
     public double getDiscount() {
         return discount;
