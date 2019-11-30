@@ -22,21 +22,21 @@ public class T2NodesBeforeNodesX {
     }
 
     void transfertBeforeX(Integer x) {
-        LinkedList<Integer> temporaryStorageToMoveDigitsLessThanX = new LinkedList<Integer>();
+        LinkedList<Integer> lessThanX = new LinkedList<Integer>();
         for (int i = list.size() - 1; i >= 0; i--) {
             if (list.get(i) < x) {
-                temporaryStorageToMoveDigitsLessThanX.add(list.get(i));
+                lessThanX.add(list.get(i));
                 list.remove(i);
             }
         }
 
         for (int i = 0; i < list.size() - 1; i++) {
-            if (temporaryStorageToMoveDigitsLessThanX.size() > 0) {
-                if (list.get(i) > temporaryStorageToMoveDigitsLessThanX.get(i)) {
-                    while (temporaryStorageToMoveDigitsLessThanX.size() != 0) {
+            if (lessThanX.size() > 0) {
+                if (list.get(i) > lessThanX.get(i)) {
+                    while (lessThanX.size() != 0) {
                         int index = 0;
-                        list.add(i, temporaryStorageToMoveDigitsLessThanX.get(index));
-                        temporaryStorageToMoveDigitsLessThanX.remove(index);
+                        list.add(i, lessThanX.get(index));
+                        lessThanX.remove(index);
                     }
                 }
             }
