@@ -1,34 +1,9 @@
-package info.vladyslav.EPAM_HW_4_1118;
+package info.vladyslav.EPAM_HW_4_1118.receipt;
 
 import java.util.Date;
 import java.util.Scanner;
 
-public class ReceiptApplicationRun {
-    public static void main(String[] args) {
-        Controller controller = new Controller();
-        controller.run();
-    }
-}
-
-class Model {
-    private double discount;
-
-    public double getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(double amount) {
-        if (amount <= 500) {
-            this.discount = 0.05;
-        } else if (amount <= 1000) {
-            this.discount = 0.1;
-        } else {
-            this.discount = 0.15;
-        }
-    }
-}
-
-class View {
+class AppView {
     private static final String ENTER_TOTAL_AMOUNT = "Please enter the total amount";
     private static final String DATE = "- Date: ";
     private static final String TOTAL_AMOUNT = "\n- Total amount: ";
@@ -58,15 +33,3 @@ class View {
     }
 
 }
-
-class Controller {
-
-    void run() {
-        View view = new View();
-        view.setTotalAmount();
-        Model model = new Model();
-        model.setDiscount(view.getTotalAmount());
-        view.showReceipt(view.getTotalAmount(), model.getDiscount());
-    }
-}
-

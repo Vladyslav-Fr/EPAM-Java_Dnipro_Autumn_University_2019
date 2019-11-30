@@ -1,5 +1,6 @@
-package info.vladyslav.EPAM_HW_4_1118;
+package info.vladyslav.EPAM_HW_4_1118.receipt;
 
+import info.vladyslav.EPAM_HW_4_1118.receipt.Model;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

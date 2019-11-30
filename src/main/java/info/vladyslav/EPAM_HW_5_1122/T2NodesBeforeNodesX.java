@@ -13,7 +13,7 @@ import java.util.List;
 public class T2NodesBeforeNodesX {
     private List<Integer> list;
 
-    private List<Integer> getList() {
+    public List<Integer> getList() {
         return list;
     }
 

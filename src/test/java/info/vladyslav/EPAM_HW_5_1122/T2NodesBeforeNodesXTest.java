@@ -5,13 +5,13 @@ import org.junit.Test;
 
 import java.util.LinkedList;
 
+import static org.junit.Assert.assertEquals;
+
 
 public class T2NodesBeforeNodesXTest {
 
     @Before
     public void before() {
-
-
     }
 
     @Test
@@ -19,15 +19,13 @@ public class T2NodesBeforeNodesXTest {
         T2NodesBeforeNodesX t2NodesBeforeNodesX = new T2NodesBeforeNodesX();
         t2NodesBeforeNodesX.setList(new LinkedList<Integer>());
 
-
-        t2NodesBeforeNodesX.getTransfer().add(1);
-        t2NodesBeforeNodesX.getTransfer().add(4);
-        t2NodesBeforeNodesX.getTransfer().add(3);
-        t2NodesBeforeNodesX.getTransfer().add(2);
-        t2NodesBeforeNodesX.getTransfer().add(5);
-        t2NodesBeforeNodesX.getTransfer().add(2);
+        t2NodesBeforeNodesX.getList().add(1);
+        t2NodesBeforeNodesX.getList().add(4);
+        t2NodesBeforeNodesX.getList().add(3);
+        t2NodesBeforeNodesX.getList().add(2);
+        t2NodesBeforeNodesX.getList().add(5);
+        t2NodesBeforeNodesX.getList().add(2);
         t2NodesBeforeNodesX.transfertBeforeX(3);
-
 
         LinkedList test = new LinkedList();
         test.add(1);
@@ -37,7 +35,7 @@ public class T2NodesBeforeNodesXTest {
         test.add(3);
         test.add(5);
 
-        assertEquals(t2NodesBeforeNodesX.getTransfer(), test);
+        assertEquals(t2NodesBeforeNodesX.getList(), test);
     }
 
     @Test
@@ -46,12 +44,12 @@ public class T2NodesBeforeNodesXTest {
         t2NodesBeforeNodesX.setList(new LinkedList<Integer>());
 
 
-        t2NodesBeforeNodesX.getTransfer().add(1);
-        t2NodesBeforeNodesX.getTransfer().add(4);
-        t2NodesBeforeNodesX.getTransfer().add(3);
-        t2NodesBeforeNodesX.getTransfer().add(2);
-        t2NodesBeforeNodesX.getTransfer().add(5);
-        t2NodesBeforeNodesX.getTransfer().add(2);
+        t2NodesBeforeNodesX.getList().add(1);
+        t2NodesBeforeNodesX.getList().add(4);
+        t2NodesBeforeNodesX.getList().add(3);
+        t2NodesBeforeNodesX.getList().add(2);
+        t2NodesBeforeNodesX.getList().add(5);
+        t2NodesBeforeNodesX.getList().add(2);
         t2NodesBeforeNodesX.transfertBeforeX(4);
 
         LinkedList test = new LinkedList();
@@ -62,7 +60,7 @@ public class T2NodesBeforeNodesXTest {
         test.add(4);
         test.add(5);
 
-        assertEquals(t2NodesBeforeNodesX.getTransfer(), test);
+        assertEquals(t2NodesBeforeNodesX.getList(), test);
     }
 
 

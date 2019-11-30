@@ -14,7 +14,7 @@ import java.util.List;
 public class T3RemoveDuplicates {
     private List<Integer> list;
 
-    private List<Integer> getList() {
+    public List<Integer> getList() {
         return list;
     }
 

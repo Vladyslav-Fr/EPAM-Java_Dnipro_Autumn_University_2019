@@ -11,7 +11,7 @@ import java.util.List;
 public class T1RotateLinkedList {
     private List<Integer> rotor;
 
-    private List<Integer> getRotor() {
+    public List<Integer> getRotor() {
         return rotor;
     }
 
