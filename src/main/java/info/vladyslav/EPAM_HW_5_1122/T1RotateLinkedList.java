@@ -30,10 +30,10 @@ public class T1RotateLinkedList {
 
     void shiftRight(int k) {
         for (int j = 0; j < k; j++) {
-            Integer temporaryStorageForOneDigitToMove = rotor.get(rotor.size() - 1);
+            Integer forOneDigitToMove = rotor.get(rotor.size() - 1);
             for (int i = rotor.size() - 1; i >= 0; i--) {
                 if (i == 0) {
-                    rotor.set(i, temporaryStorageForOneDigitToMove);
+                    rotor.set(i, forOneDigitToMove);
                 } else {
                     rotor.set(i, rotor.get(i - 1));
                 }
