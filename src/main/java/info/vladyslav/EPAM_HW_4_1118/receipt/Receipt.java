@@ -1,16 +1,18 @@
 package info.vladyslav.EPAM_HW_4_1118.receipt;
 
-class Receipt {
-    String date;
-    double amount;
-    private double discount;
-    double tolalAmount;
+import java.util.Date;
 
-    public double getDiscount() {
+class Receipt {
+    private String date;
+    private double totalAmount;
+    private double discount;
+    private double tolalAmountWithDiscount;
+
+    double getDiscount() {
         return discount;
     }
 
-    public void setDiscount(double amount) {
+    void setDiscount(double amount) {
         if (amount <= 500) {
             this.discount = 0.05;
         } else if (amount <= 1000) {
@@ -18,5 +20,30 @@ class Receipt {
         } else {
             this.discount = 0.15;
         }
+    }
+
+    String getDate() {
+        return date;
+    }
+
+    void setCurrentDate() {
+        Date date = new Date();
+        this.date = date.toString();
+    }
+
+    double getTotalAmount() {
+        return totalAmount;
+    }
+
+    void setTotalAmount(double totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    double getTolalAmountWithDiscount() {
+        return tolalAmountWithDiscount;
+    }
+
+    void setTolalAmountWithDiscount(double tolalAmountWithDiscount) {
+        this.tolalAmountWithDiscount = tolalAmountWithDiscount;
     }
 }

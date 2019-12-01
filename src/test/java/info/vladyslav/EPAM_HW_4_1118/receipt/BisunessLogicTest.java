@@ -8,7 +8,7 @@ public class BisunessLogicTest {
 
     @Test
     public void run() {
-        BisunessLogic bisunessLogic =new BisunessLogic();
+        BisunessLogic bisunessLogic = new BisunessLogic();
         assertNotNull(bisunessLogic);
     }
 }

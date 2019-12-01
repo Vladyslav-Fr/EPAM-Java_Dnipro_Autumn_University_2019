@@ -12,10 +12,4 @@ public class AppViewTest {
         assertNotNull(appView);
     }
 
-    @Test
-    public void getTotalAmount() {
-        AppView appView = new AppView();
-        assertTrue(appView.getTotalAmount() == 0.0);
-    }
-
 }

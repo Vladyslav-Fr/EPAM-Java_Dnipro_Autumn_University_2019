@@ -4,9 +4,11 @@ class BisunessLogic {
 
     void run() {
         AppView appView = new AppView();
-        appView.setTotalAmount();
         Receipt receipt = new Receipt();
-        receipt.setDiscount(appView.getTotalAmount());
-        appView.showReceipt(appView.getTotalAmount(), receipt.getDiscount());
+        receipt.setCurrentDate();
+        receipt.setTotalAmount(appView.setTotalAmount());
+        receipt.setDiscount(receipt.getTotalAmount());
+        receipt.setTolalAmountWithDiscount(receipt.getTotalAmount() - (receipt.getTotalAmount() * receipt.getDiscount()));
+        appView.showReceipt(receipt.getDate(), receipt.getTotalAmount(), receipt.getDiscount(), receipt.getTolalAmountWithDiscount());
     }
 }

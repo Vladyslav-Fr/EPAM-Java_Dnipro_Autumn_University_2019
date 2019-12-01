@@ -1,5 +1,15 @@
 package info.vladyslav.EPAM_HW_4_1118;
 
+/**
+ * Task 1
+ * Given two strings str1 and str2, return their longest common subsequence.
+ * "ace" is a subsequence of "acer" while "bfg" is not). A common subsequence of two strings is
+ * a subsequence that is common to both strings.
+ * If there is no common subsequence, return “”
+ * Program should covered with unit test.
+ */
+
+
 public class LongestCommonSubsequence {
 
     String substring(String str1, String str2) {
