@@ -10,7 +10,6 @@ import java.util.LinkedList;
  * and it should return false if every element is distinct.
  */
 
-
 public class T1DistinctOrDuplicated {
 
     boolean contentsDuplicateCheck(LinkedList<Integer> integers) {

@@ -7,8 +7,9 @@ import java.util.ArrayList;
 import static org.junit.Assert.*;
 
 public class T3AmountKindsOfCandiesTest {
-T3AmountKindsOfCandies t3AmountKindsOfCandies = new T3AmountKindsOfCandies();
-ArrayList<Integer> integers = new ArrayList<>();
+    T3AmountKindsOfCandies t3AmountKindsOfCandies = new T3AmountKindsOfCandies();
+    ArrayList<Integer> integers = new ArrayList<>();
+
     @Test
     public void maxAmountOfKindOfCandies1() {
         integers.add(1);
