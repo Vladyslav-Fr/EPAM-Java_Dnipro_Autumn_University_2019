@@ -5,7 +5,7 @@ import info.vladyslav.EPAM_HW_7_1206.controller.AccountController;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class AccountView {
+public class DeveloperView {
     Scanner scannerForStrings = new Scanner(System.in);
     Scanner scannerForLongs = new Scanner(System.in);
     AccountController accountController = new AccountController();

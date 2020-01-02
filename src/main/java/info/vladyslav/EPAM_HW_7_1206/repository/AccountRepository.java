@@ -1,4 +1,6 @@
 package info.vladyslav.EPAM_HW_7_1206.repository;
 
-public interface AccountRepository {
+import info.vladyslav.EPAM_HW_7_1206.model.Account;
+
+public interface AccountRepository extends GenericRepository<Account, Long> {
 }

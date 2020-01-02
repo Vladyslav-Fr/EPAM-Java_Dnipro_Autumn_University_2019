@@ -12,9 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class JavaIODeveloperRepositoryImpl implements AccountRepository {
+public class JavaIOSkillRepositoryImpl implements AccountRepository {
 
-    private String fileName = "D:\\Documents\\Workspace\\EPAM\\src\\main\\resources\\accounts.txt";
+    private String fileName = "D:\\Documents\\Workspace\\EPAM\\src\\main\\resources\\skills.txt";
 
     @Override
     public void create(Account account) throws IOException {
@@ -24,8 +24,7 @@ public class JavaIODeveloperRepositoryImpl implements AccountRepository {
         List<String> serializedForSaveToFile = new ArrayList<>();
         for (Account accountForSaveToFile : accounts) {
             String stringForSaveToFile = "id = " + accountForSaveToFile.getId() +
-                    " | accountName = " + accountForSaveToFile.getAccountName() +
-                    " | status = " + accountForSaveToFile.getStatus();
+                    " | accountName = " + accountForSaveToFile.getAccountName();
             serializedForSaveToFile.add(stringForSaveToFile);
         }
         try (PrintWriter writer = new PrintWriter(fileName)) {
@@ -68,9 +67,6 @@ public class JavaIODeveloperRepositoryImpl implements AccountRepository {
                 if (token.startsWith("accountName = ")) {
                     data = token.substring(14);
                 }
-                if (token.startsWith("status = ")) {
-                    status = AccountStatus.valueOf(token.substring(9));
-                }
             }
             accounts.add(new Account(id, data, status));
         }
@@ -89,8 +85,7 @@ public class JavaIODeveloperRepositoryImpl implements AccountRepository {
                 accountForUpdateAndSave = accountForUpdate;
             }
             String stringForSaveToFile = "id = " + accountForUpdateAndSave.getId() +
-                    " | accountName = " + accountForUpdateAndSave.getAccountName() +
-                    " | status = " + accountForUpdateAndSave.getStatus();
+                    " | accountName = " + accountForUpdateAndSave.getAccountName();
             serializedForSaveToFile.add(stringForSaveToFile);
         }
         try (PrintWriter writer = new PrintWriter(fileName)) {
@@ -103,15 +98,6 @@ public class JavaIODeveloperRepositoryImpl implements AccountRepository {
 
 
     }
-
-
-//    public static void main(String[] args) throws IOException {
-//        JavaIOAccountRepositoryImpl javaIOAccountRepository = new JavaIOAccountRepositoryImpl();
-//        List<Account> accounts = javaIOAccountRepository.getAll();
-//        System.out.println(accounts.size());
-//        System.out.println(accounts);
-//    }
-
 
     @Override
     public void delete(Account account) {

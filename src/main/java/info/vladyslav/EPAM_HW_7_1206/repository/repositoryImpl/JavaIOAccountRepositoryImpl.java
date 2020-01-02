@@ -4,15 +4,11 @@ import info.vladyslav.EPAM_HW_7_1206.auxiliary.AccountStatus;
 import info.vladyslav.EPAM_HW_7_1206.model.Account;
 import info.vladyslav.EPAM_HW_7_1206.repository.AccountRepository;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.*;
+import java.util.*;
 
 
-public class JavaIODeveloperRepositoryImpl implements AccountRepository {
+public class JavaIOAccountRepositoryImpl implements AccountRepository {
 
     private String fileName = "D:\\Documents\\Workspace\\EPAM\\src\\main\\resources\\accounts.txt";
 

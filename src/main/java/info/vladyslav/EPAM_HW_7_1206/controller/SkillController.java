@@ -8,7 +8,7 @@ import info.vladyslav.EPAM_HW_7_1206.repository.repositoryImpl.JavaIOAccountRepo
 import java.io.IOException;
 import java.util.List;
 
-public class AccountController {
+public class SkillController {
     private AccountRepository repo = new JavaIOAccountRepositoryImpl();
     private static final String SUCCESSFULLY_CREATED = "Creation completed successfully\n";
     private static final String SUCCESSFULLY_BANNED = "Account successfully banned\n";
