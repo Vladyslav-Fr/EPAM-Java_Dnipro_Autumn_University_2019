@@ -51,7 +51,7 @@ public class JavaIOAccountRepositoryImpl implements AccountRepository {
         String supportForAccountsArrayList;
 
         Long id = null;
-        String data = null;
+        String accountName = null;
         AccountStatus status = null;
 
         while ((supportForAccountsArrayList = reader.readLine()) != null) {
@@ -62,13 +62,13 @@ public class JavaIOAccountRepositoryImpl implements AccountRepository {
                     id = Long.parseLong(token.substring(5));
                 }
                 if (token.startsWith("accountName = ")) {
-                    data = token.substring(14);
+                    accountName = token.substring(14);
                 }
                 if (token.startsWith("status = ")) {
                     status = AccountStatus.valueOf(token.substring(9));
                 }
             }
-            accounts.add(new Account(id, data, status));
+            accounts.add(new Account(id, accountName, status));
         }
 
         return accounts;

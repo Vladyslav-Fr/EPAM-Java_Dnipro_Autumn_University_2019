@@ -4,6 +4,9 @@ public class Skill {
     Long id;
     String skill;
 
+    public Skill() {
+    }
+
     public Skill(Long id, String skill) {
         this.id = id;
         this.skill = skill;

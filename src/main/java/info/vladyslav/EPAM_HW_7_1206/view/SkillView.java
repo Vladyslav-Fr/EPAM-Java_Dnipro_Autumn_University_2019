@@ -1,6 +1,6 @@
 package info.vladyslav.EPAM_HW_7_1206.view;
 
-import info.vladyslav.EPAM_HW_7_1206.controller.AccountController;
+import info.vladyslav.EPAM_HW_7_1206.controller.SkillController;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -8,61 +8,54 @@ import java.util.Scanner;
 public class SkillView {
     Scanner scannerForStrings = new Scanner(System.in);
     Scanner scannerForLongs = new Scanner(System.in);
-    AccountController accountController = new AccountController();
+    SkillController skillController = new SkillController();
 
 
-    private static final String ACCOUNT_VIEW_MENU = "Make your choice\n" +
-            "1. create account\n" +
-            "2. show all accounts (read all)\n" +
-            "3. show account by id (read)\n" +
-            "4. update account name\n" +
-            "5. ban account\n" +
-            "6. delete account\n" +
-            "7. exit";
+    private static final String SKILL_VIEW_MENU = "Make your choice\n" +
+            "1. create skill\n" +
+            "2. show all skills (read all)\n" +
+            "3. show skill by id (read)\n" +
+            "4. update skill\n" +
+            "5. delete skill\n" +
+            "6. exit";
 
-    public void viewAccountMenu() throws IOException {
+    public void viewSkillMenu() throws IOException {
 
         int numberOfChoce = 0;
         Scanner getConsoleNuber = new Scanner(System.in);
-        while (numberOfChoce != 7) {
-            System.out.println(ACCOUNT_VIEW_MENU);
+        while (numberOfChoce != 6) {
+            System.out.println(SKILL_VIEW_MENU);
             numberOfChoce = getConsoleNuber.nextInt();
 
             switch (numberOfChoce) {
                 case 1:
-                    System.out.println("Enter your account name: ");
+                    System.out.println("Enter the skill you want to create: ");
                     String information = scannerForStrings.nextLine();
-                    System.out.println(accountController.addNewAccount(information));
+                    System.out.println(skillController.addNewSkill(information));
                     break;
 
                 case 2:
-                    accountController.getAllFromRepo();
+                    skillController.getAllFromRepo();
                     break;
 
                 case 3:
                     System.out.println("Enter id: ");
                     long imputIdForShow = scannerForLongs.nextLong();
-                    accountController.getAccountById(imputIdForShow);
+                    skillController.getSkillById(imputIdForShow);
                     break;
 
                 case 4:
                     System.out.println("Enter id for update: ");
                     long idForUpdate = scannerForLongs.nextLong();
-                    System.out.println("Enter new account name for update: ");
+                    System.out.println("Enter new skill name for update: ");
                     String informationForUpdate = scannerForStrings.nextLine();
-                    accountController.setAccountUpdate(idForUpdate, informationForUpdate);
+                    skillController.setSkillUpdate(idForUpdate, informationForUpdate);
                     break;
 
                 case 5:
-                    System.out.println("Enter id for ban: ");
-                    long idForBan = scannerForLongs.nextLong();
-                    accountController.setAccountBan(idForBan);
-                    break;
-
-                case 6:
-                    System.out.println("Enter id for delete account: ");
+                    System.out.println("Enter id for delete: ");
                     long idForDelete = scannerForLongs.nextLong();
-                    accountController.setAccountDeleteStatus(idForDelete);
+                    skillController.deleteSkill(idForDelete);
                     break;
             }
         }

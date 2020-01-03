@@ -1,95 +1,79 @@
 package info.vladyslav.EPAM_HW_7_1206.controller;
 
-import info.vladyslav.EPAM_HW_7_1206.auxiliary.AccountStatus;
-import info.vladyslav.EPAM_HW_7_1206.model.Account;
-import info.vladyslav.EPAM_HW_7_1206.repository.AccountRepository;
-import info.vladyslav.EPAM_HW_7_1206.repository.repositoryImpl.JavaIOAccountRepositoryImpl;
+import info.vladyslav.EPAM_HW_7_1206.model.Skill;
+import info.vladyslav.EPAM_HW_7_1206.repository.SkillRepository;
+import info.vladyslav.EPAM_HW_7_1206.repository.repositoryImpl.JavaIOSkillRepositoryImpl;
 
 import java.io.IOException;
 import java.util.List;
 
 public class SkillController {
-    private AccountRepository repo = new JavaIOAccountRepositoryImpl();
+    private SkillRepository repo = new JavaIOSkillRepositoryImpl();
     private static final String SUCCESSFULLY_CREATED = "Creation completed successfully\n";
-    private static final String SUCCESSFULLY_BANNED = "Account successfully banned\n";
-    private static final String SUCCESSFULLY_UPDATED = "Account successfully updated\n";
-    private static final String SUCCESSFULLY_DELETED = "Account successfully deleted\n";
+    private static final String SUCCESSFULLY_UPDATED = "Skill successfully updated\n";
+    private static final String SUCCESSFULLY_DELETED = "Skill successfully deleted\n";
+    private static final String REPOSITORY_EMPTY = "Repository is empty. Select «create skill», #1 on the list below\n";
 
-    public String addNewAccount(String information) throws IOException {
+    public String addNewSkill(String information) throws IOException {
         long id = repo.getLastId() + 1;
-        Account account = new Account(id, information, AccountStatus.ACTIVE);
-        repo.create(account);
+        Skill skill = new Skill(id, information);
+        repo.create(skill);
         return SUCCESSFULLY_CREATED;
     }
 
     public void getAllFromRepo() throws IOException {
         if (repo.getAll().size() == 0L) {
-            System.out.print("Repository is empty. Select «create account», #1 on the list below\n");
+            System.out.print(REPOSITORY_EMPTY);
         }
-        for (Account account : repo.getAll()) {
-            System.out.println(account);
+        for (Skill skill : repo.getAll()) {
+            System.out.println(skill);
         }
         System.out.println();
     }
 
-    public void getAccountById(long id) throws IOException {
+    public void getSkillById(long id) throws IOException {
         if (repo.getAll().size() == 0L) {
-            System.out.print("Repository is empty. Select «create account», #1 on the list below\n");
+            System.out.print(REPOSITORY_EMPTY);
         }
-        for (Account account : repo.getAll()) {
-            if (account.getId() == id) {
-                System.out.println(account);
+        for (Skill skill : repo.getAll()) {
+            if (skill.getId() == id) {
+                System.out.println(skill);
             }
         }
         System.out.println();
     }
 
-    public void setAccountUpdate(long idForUpdate, String infoForUpdate) throws IOException {
-        List<Account> collectionForUpdate = repo.getAll();
-        Account account = new Account();
+    public void setSkillUpdate(long idForUpdate, String infoForUpdate) throws IOException {
+        List<Skill> collectionForUpdate = repo.getAll();
+        Skill skill = new Skill();
 
-        for (Account accounts : collectionForUpdate) {
-            if (accounts.getId() == idForUpdate) {
-                account.setId(accounts.getId());
-                account.setAccountName(infoForUpdate);
-                account.setStatus(accounts.getStatus());
+        for (Skill skills : collectionForUpdate) {
+            if (skills.getId() == idForUpdate) {
+                skill.setId(skills.getId());
+                skill.setSkill(infoForUpdate);
             }
         }
 
-        repo.update(idForUpdate, account);
+        repo.update(idForUpdate, skill);
         System.out.println(SUCCESSFULLY_UPDATED);
     }
 
-    public void setAccountBan(Long idForBan) throws IOException {
-        List<Account> collectionForUpdate = repo.getAll();
-        Account account = new Account();
-
-        for (Account accounts : collectionForUpdate) {
-            if (accounts.getId().equals(idForBan)) {
-                account.setId(accounts.getId());
-                account.setAccountName(accounts.getAccountName());
-                account.setStatus(AccountStatus.BANNED);
-            }
-        }
-
-        repo.update(idForBan, account);
-        System.out.println(SUCCESSFULLY_BANNED);
+    public void deleteSkill(Long idForDelete) throws IOException {
+        repo.delete(fetchingTargetClassById(idForDelete));
+        System.out.println(SUCCESSFULLY_DELETED);
     }
 
-    public void setAccountDeleteStatus (Long idForDelete) throws IOException {
-        List<Account> collectionForUpdate = repo.getAll();
-        Account account = new Account();
+    private Skill fetchingTargetClassById(Long id) throws IOException {
+        List<Skill> collectionForUpdate = repo.getAll();
+        Skill skill = new Skill();
 
-        for (Account accounts : collectionForUpdate) {
-            if (accounts.getId().equals(idForDelete)) {
-                account.setId(accounts.getId());
-                account.setAccountName(accounts.getAccountName());
-                account.setStatus(AccountStatus.DELETED);
+        for (Skill skills : collectionForUpdate) {
+            if (skills.getId().equals(id)) {
+                skill.setId(skills.getId());
+                skill.setSkill(skills.getSkill());
             }
         }
-
-        repo.update(idForDelete, account);
-        System.out.println(SUCCESSFULLY_DELETED);
+        return skill;
     }
 
 }

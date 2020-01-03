@@ -1,8 +1,7 @@
 package info.vladyslav.EPAM_HW_7_1206.repository.repositoryImpl;
 
-import info.vladyslav.EPAM_HW_7_1206.auxiliary.AccountStatus;
-import info.vladyslav.EPAM_HW_7_1206.model.Account;
-import info.vladyslav.EPAM_HW_7_1206.repository.AccountRepository;
+import info.vladyslav.EPAM_HW_7_1206.model.Skill;
+import info.vladyslav.EPAM_HW_7_1206.repository.SkillRepository;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -12,19 +11,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class JavaIOSkillRepositoryImpl implements AccountRepository {
+public class JavaIOSkillRepositoryImpl implements SkillRepository {
 
     private String fileName = "D:\\Documents\\Workspace\\EPAM\\src\\main\\resources\\skills.txt";
 
     @Override
-    public void create(Account account) throws IOException {
-        List<Account> accounts = getAll();
-        accounts.add(account);
+    public void create(Skill skill) throws IOException {
+        List<Skill> skills = getAll();
+        skills.add(skill);
 
         List<String> serializedForSaveToFile = new ArrayList<>();
-        for (Account accountForSaveToFile : accounts) {
-            String stringForSaveToFile = "id = " + accountForSaveToFile.getId() +
-                    " | accountName = " + accountForSaveToFile.getAccountName();
+        for (Skill skillForSaveToFile : skills) {
+            String stringForSaveToFile = "id = " + skillForSaveToFile.getId() +
+                    " | skillName = " + skillForSaveToFile.getSkill();
             serializedForSaveToFile.add(stringForSaveToFile);
         }
         try (PrintWriter writer = new PrintWriter(fileName)) {
@@ -37,55 +36,54 @@ public class JavaIOSkillRepositoryImpl implements AccountRepository {
     }
 
     @Override
-    public Account getById(Long aLong) {
+    public Skill getById(Long aLong) {
         return null;
     }
 
     @Override
     public Long getLastId() throws IOException {
-        List<Account> accounts = getAll();
-        return (long) accounts.size();
+        List<Skill> skills = getAll();
+        return (long) skills.size();
     }
 
     @Override
-    public List<Account> getAll() throws IOException {
+    public List<Skill> getAll() throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(fileName));
-        List<Account> accounts = new ArrayList<>();
-        String supportForAccountsArrayList;
+        List<Skill> skills = new ArrayList<>();
+        String supportForSkillsArrayList;
 
         Long id = null;
-        String data = null;
-        AccountStatus status = null;
+        String skillName = null;
 
-        while ((supportForAccountsArrayList = reader.readLine()) != null) {
+        while ((supportForSkillsArrayList = reader.readLine()) != null) {
 
-            String[] tokens = supportForAccountsArrayList.split(" \\| ");
+            String[] tokens = supportForSkillsArrayList.split(" \\| ");
             for (String token : tokens) {
                 if (token.startsWith("id = ")) {
                     id = Long.parseLong(token.substring(5));
                 }
-                if (token.startsWith("accountName = ")) {
-                    data = token.substring(14);
+                if (token.startsWith("skillName = ")) {
+                    skillName = token.substring(12);
                 }
             }
-            accounts.add(new Account(id, data, status));
+            skills.add(new Skill(id, skillName));
         }
 
-        return accounts;
+        return skills;
     }
 
     @Override
-    public void update(Long idForUpdate, Account accountForUpdate) throws IOException {
-        List<Account> collectionForUpdate = getAll();
+    public void update(Long idForUpdate, Skill skillForUpdate) throws IOException {
+        List<Skill> collectionForUpdate = getAll();
 
         List<String> serializedForSaveToFile = new ArrayList<>();
 
-        for (Account accountForUpdateAndSave : collectionForUpdate) {
-            if (accountForUpdateAndSave.getId().equals(idForUpdate)) {
-                accountForUpdateAndSave = accountForUpdate;
+        for (Skill skillForUpdateAndSave : collectionForUpdate) {
+            if (skillForUpdateAndSave.getId().equals(idForUpdate)) {
+                skillForUpdateAndSave = skillForUpdate;
             }
-            String stringForSaveToFile = "id = " + accountForUpdateAndSave.getId() +
-                    " | accountName = " + accountForUpdateAndSave.getAccountName();
+            String stringForSaveToFile = "id = " + skillForUpdateAndSave.getId() +
+                    " | skillName = " + skillForUpdateAndSave.getSkill();
             serializedForSaveToFile.add(stringForSaveToFile);
         }
         try (PrintWriter writer = new PrintWriter(fileName)) {
@@ -100,8 +98,26 @@ public class JavaIOSkillRepositoryImpl implements AccountRepository {
     }
 
     @Override
-    public void delete(Account account) {
+    public void delete(Skill skill) throws IOException {
+        List<Skill> collectionForUpdate = getAll();
 
+        List<String> serializedForSaveToFile = new ArrayList<>();
+
+        for (Skill skillForDelete : collectionForUpdate) {
+            if (skillForDelete.getId().equals(skill.getId())){
+                continue;
+            }
+            String stringForSaveToFile = "id = " + skillForDelete.getId() +
+                    " | skillName = " + skillForDelete.getSkill();
+            serializedForSaveToFile.add(stringForSaveToFile);
+        }
+        try (PrintWriter writer = new PrintWriter(fileName)) {
+            for (String s : serializedForSaveToFile) {
+                writer.println(s);
+            }
+        } catch (IOException e) {
+            System.out.println("can`t write file " + fileName);
+        }
     }
 
 }

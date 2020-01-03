@@ -20,5 +20,6 @@ public interface GenericRepository<T, ID> {
 
     // delete (cruD)
 
-    void delete(T t); // total delete is not permitted, that's why this function not realized
+    void delete(T t) throws IOException;
+    // total delete is not permitted for Account, that's why this function not realized for Account
 }
