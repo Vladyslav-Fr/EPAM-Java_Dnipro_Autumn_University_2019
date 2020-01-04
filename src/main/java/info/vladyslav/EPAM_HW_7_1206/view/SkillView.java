@@ -6,10 +6,9 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class SkillView {
-    Scanner scannerForStrings = new Scanner(System.in);
-    Scanner scannerForLongs = new Scanner(System.in);
-    SkillController skillController = new SkillController();
-
+    private Scanner scannerForStrings = new Scanner(System.in);
+    private Scanner scannerForLongs = new Scanner(System.in);
+    private SkillController skillController = new SkillController();
 
     private static final String SKILL_VIEW_MENU = "Make your choice\n" +
             "1. create skill\n" +
@@ -17,7 +16,12 @@ public class SkillView {
             "3. show skill by id (read)\n" +
             "4. update skill\n" +
             "5. delete skill\n" +
-            "6. exit";
+            "6. quit";
+    private static final String ENTER_SKILL = "Enter the skill you want to create: ";
+    private static final String ENTER_ID = "Enter id: ";
+    private static final String ENTER_ID_UPDATE = "Enter id for update: ";
+    private static final String ENTER_SKILL_UPDATE = "Enter new skill name for update: ";
+    private static final String ENTER_ID_DELETE = "Enter id for delete: ";
 
     public void viewSkillMenu() throws IOException {
 
@@ -29,7 +33,7 @@ public class SkillView {
 
             switch (numberOfChoce) {
                 case 1:
-                    System.out.println("Enter the skill you want to create: ");
+                    System.out.println(ENTER_SKILL);
                     String information = scannerForStrings.nextLine();
                     System.out.println(skillController.addNewSkill(information));
                     break;
@@ -39,21 +43,21 @@ public class SkillView {
                     break;
 
                 case 3:
-                    System.out.println("Enter id: ");
+                    System.out.println(ENTER_ID);
                     long imputIdForShow = scannerForLongs.nextLong();
-                    skillController.getSkillById(imputIdForShow);
+                    System.out.println(skillController.getSkillById(imputIdForShow));
                     break;
 
                 case 4:
-                    System.out.println("Enter id for update: ");
+                    System.out.println(ENTER_ID_UPDATE);
                     long idForUpdate = scannerForLongs.nextLong();
-                    System.out.println("Enter new skill name for update: ");
+                    System.out.println(ENTER_SKILL_UPDATE);
                     String informationForUpdate = scannerForStrings.nextLine();
                     skillController.setSkillUpdate(idForUpdate, informationForUpdate);
                     break;
 
                 case 5:
-                    System.out.println("Enter id for delete: ");
+                    System.out.println(ENTER_ID_DELETE);
                     long idForDelete = scannerForLongs.nextLong();
                     skillController.deleteSkill(idForDelete);
                     break;

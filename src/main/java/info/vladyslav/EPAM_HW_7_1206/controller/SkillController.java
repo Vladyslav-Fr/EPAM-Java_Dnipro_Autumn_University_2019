@@ -26,21 +26,22 @@ public class SkillController {
             System.out.print(REPOSITORY_EMPTY);
         }
         for (Skill skill : repo.getAll()) {
-            System.out.println(skill);
+            System.out.println("id: " + skill.getId() + " → " + skill.getSkill());
         }
         System.out.println();
     }
 
-    public void getSkillById(long id) throws IOException {
+    public Skill getSkillById(long id) throws IOException {
         if (repo.getAll().size() == 0L) {
             System.out.print(REPOSITORY_EMPTY);
         }
         for (Skill skill : repo.getAll()) {
             if (skill.getId() == id) {
-                System.out.println(skill);
+                return skill;
             }
         }
         System.out.println();
+        return null;
     }
 
     public void setSkillUpdate(long idForUpdate, String infoForUpdate) throws IOException {

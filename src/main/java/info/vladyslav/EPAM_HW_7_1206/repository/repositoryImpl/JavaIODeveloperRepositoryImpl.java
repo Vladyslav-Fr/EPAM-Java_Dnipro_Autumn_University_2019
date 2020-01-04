@@ -1,121 +1,106 @@
 package info.vladyslav.EPAM_HW_7_1206.repository.repositoryImpl;
 
-import info.vladyslav.EPAM_HW_7_1206.auxiliary.AccountStatus;
+import info.vladyslav.EPAM_HW_7_1206.controller.AccountController;
+import info.vladyslav.EPAM_HW_7_1206.controller.SkillController;
 import info.vladyslav.EPAM_HW_7_1206.model.Account;
-import info.vladyslav.EPAM_HW_7_1206.repository.AccountRepository;
+import info.vladyslav.EPAM_HW_7_1206.model.Developer;
+import info.vladyslav.EPAM_HW_7_1206.model.Skill;
+import info.vladyslav.EPAM_HW_7_1206.repository.DeveloperRepository;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+public class JavaIODeveloperRepositoryImpl implements DeveloperRepository {
 
-public class JavaIODeveloperRepositoryImpl implements AccountRepository {
+    private String fileName = "D:\\Documents\\Workspace\\EPAM\\src\\main\\resources\\developers.txt";
+    private AccountController accountController = new AccountController();
+    private SkillController skillController = new SkillController();
 
-    private String fileName = "D:\\Documents\\Workspace\\EPAM\\src\\main\\resources\\accounts.txt";
+    private static final String CAN_NOT_WRITE = "can`t write file ";
 
     @Override
-    public void create(Account account) throws IOException {
-        List<Account> accounts = getAll();
-        accounts.add(account);
+    public void create(Developer developer) throws IOException {
+        List<Developer> developers = getAll();
+        developers.add(developer);
 
         List<String> serializedForSaveToFile = new ArrayList<>();
-        for (Account accountForSaveToFile : accounts) {
-            String stringForSaveToFile = "id = " + accountForSaveToFile.getId() +
-                    " | accountName = " + accountForSaveToFile.getAccountName() +
-                    " | status = " + accountForSaveToFile.getStatus();
+
+        for (Developer accountForSaveToFile : developers) {
+            StringBuilder forBuildSkills = new StringBuilder();
+            for (Skill skill : accountForSaveToFile.getSkills()) {
+                forBuildSkills.append(skill.getId()).append(", ");
+            }
+            String stringForSaveToFile = "developer_id = " + accountForSaveToFile.getId() +
+                    " | account_id = " + accountForSaveToFile.getAccount().getId() +
+                    " | Skills_id = " + forBuildSkills.substring(0, forBuildSkills.length() - 2);
             serializedForSaveToFile.add(stringForSaveToFile);
         }
+
         try (PrintWriter writer = new PrintWriter(fileName)) {
             for (String s : serializedForSaveToFile) {
                 writer.println(s);
             }
         } catch (IOException e) {
-            System.out.println("can`t write file " + fileName);
+            System.out.println(CAN_NOT_WRITE + fileName);
         }
     }
 
     @Override
-    public Account getById(Long aLong) {
+    public Developer getById(Long aLong) {
         return null;
     }
 
     @Override
     public Long getLastId() throws IOException {
-        List<Account> accounts = getAll();
+        List<Developer> accounts = getAll();
         return (long) accounts.size();
     }
 
     @Override
-    public List<Account> getAll() throws IOException {
+    public List<Developer> getAll() throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(fileName));
-        List<Account> accounts = new ArrayList<>();
-        String supportForAccountsArrayList;
+        List<Developer> developers = new ArrayList<>();
+        String supportForDevelopersArrayList;
 
         Long id = null;
-        String data = null;
-        AccountStatus status = null;
+        Account account = null;
 
-        while ((supportForAccountsArrayList = reader.readLine()) != null) {
+        while ((supportForDevelopersArrayList = reader.readLine()) != null) {
+            Set<Skill> skills = new HashSet<>();
 
-            String[] tokens = supportForAccountsArrayList.split(" \\| ");
+            String[] tokens = supportForDevelopersArrayList.split(" \\| ");
             for (String token : tokens) {
-                if (token.startsWith("id = ")) {
-                    id = Long.parseLong(token.substring(5));
+                if (token.startsWith("developer_id = ")) {
+                    id = Long.parseLong(token.substring(15));
                 }
-                if (token.startsWith("accountName = ")) {
-                    data = token.substring(14);
+                if (token.startsWith("account_id = ")) {
+                    account = accountController.getAccountById(Long.valueOf(token.substring(13)));
                 }
-                if (token.startsWith("status = ")) {
-                    status = AccountStatus.valueOf(token.substring(9));
+                if (token.startsWith("Skills_id = ")) {
+                    String supportForSkillSet = token.substring(12);
+                    String[] tokensForSkill = supportForSkillSet.split(", ");
+                    for (String tokenSkill : tokensForSkill) {
+                        skills.add(skillController.getSkillById(Long.valueOf(tokenSkill)));
+                    }
                 }
             }
-            accounts.add(new Account(id, data, status));
+            developers.add(new Developer(id, account, skills));
         }
-
-        return accounts;
+        return developers;
     }
 
     @Override
-    public void update(Long idForUpdate, Account accountForUpdate) throws IOException {
-        List<Account> collectionForUpdate = getAll();
-
-        List<String> serializedForSaveToFile = new ArrayList<>();
-
-        for (Account accountForUpdateAndSave : collectionForUpdate) {
-            if (accountForUpdateAndSave.getId().equals(idForUpdate)) {
-                accountForUpdateAndSave = accountForUpdate;
-            }
-            String stringForSaveToFile = "id = " + accountForUpdateAndSave.getId() +
-                    " | accountName = " + accountForUpdateAndSave.getAccountName() +
-                    " | status = " + accountForUpdateAndSave.getStatus();
-            serializedForSaveToFile.add(stringForSaveToFile);
-        }
-        try (PrintWriter writer = new PrintWriter(fileName)) {
-            for (String s : serializedForSaveToFile) {
-                writer.println(s);
-            }
-        } catch (IOException e) {
-            System.out.println("can`t write file " + fileName);
-        }
-
-
+    public void update(Long idForUpdate, Developer accountForUpdate) {
     }
 
-
-//    public static void main(String[] args) throws IOException {
-//        JavaIOAccountRepositoryImpl javaIOAccountRepository = new JavaIOAccountRepositoryImpl();
-//        List<Account> accounts = javaIOAccountRepository.getAll();
-//        System.out.println(accounts.size());
-//        System.out.println(accounts);
-//    }
-
-
     @Override
-    public void delete(Account account) {
-
+    public void delete(Developer developer) {
     }
 
 }

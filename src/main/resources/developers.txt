@@ -1,0 +1,5 @@
+developer_id = 1 | account_id = 1 | Skills_id = 8, 4, 1, 6, 9
+developer_id = 2 | account_id = 2 | Skills_id = 9, 8, 1
+developer_id = 3 | account_id = 3 | Skills_id = 2, 5, 8, 7, 9, 3, 1, 6, 4
+developer_id = 4 | account_id = 4 | Skills_id = 8, 1
+developer_id = 5 | account_id = 5 | Skills_id = 2, 3

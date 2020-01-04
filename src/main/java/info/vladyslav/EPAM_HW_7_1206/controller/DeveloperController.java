@@ -1,96 +1,82 @@
 package info.vladyslav.EPAM_HW_7_1206.controller;
 
-import info.vladyslav.EPAM_HW_7_1206.auxiliary.AccountStatus;
-import info.vladyslav.EPAM_HW_7_1206.model.Account;
-import info.vladyslav.EPAM_HW_7_1206.repository.AccountRepository;
-import info.vladyslav.EPAM_HW_7_1206.repository.repositoryImpl.JavaIOAccountRepositoryImpl;
+import info.vladyslav.EPAM_HW_7_1206.model.Developer;
+import info.vladyslav.EPAM_HW_7_1206.model.Skill;
+import info.vladyslav.EPAM_HW_7_1206.repository.DeveloperRepository;
+import info.vladyslav.EPAM_HW_7_1206.repository.repositoryImpl.JavaIODeveloperRepositoryImpl;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Set;
 
 public class DeveloperController {
-    private AccountRepository repo = new JavaIOAccountRepositoryImpl();
-    private static final String SUCCESSFULLY_CREATED = "Creation completed successfully\n";
-    private static final String SUCCESSFULLY_BANNED = "Account successfully banned\n";
-    private static final String SUCCESSFULLY_UPDATED = "Account successfully updated\n";
-    private static final String SUCCESSFULLY_DELETED = "Account successfully deleted\n";
+    private DeveloperRepository repo = new JavaIODeveloperRepositoryImpl();
+    private AccountController accountController = new AccountController();
+    private SkillController skillController = new SkillController();
 
-    public String addNewAccount(String information) throws IOException {
+
+    private static final String SUCCESSFULLY_CREATED = "Creation of developer completed successfully\n";
+    private static final String REPOSITORY_EMPTY = "Repository is empty. " +
+            "Select «create developer», #1 on the list below\n";
+
+    public void addNewDeveloperFromWizard(String information, Set<Skill> skillSet) throws IOException {
         long id = repo.getLastId() + 1;
-        Account account = new Account(id, information, AccountStatus.ACTIVE);
-        repo.create(account);
-        return SUCCESSFULLY_CREATED;
+        Developer developer = new Developer(id, accountController.addNewAccount(information), skillSet);
+        repo.create(developer);
+        System.out.println(SUCCESSFULLY_CREATED);
     }
+
+    // Skills methods from Developer Controller:
+    public void getAllFromSkillRepo() throws IOException {
+        skillController.getAllFromRepo();
+    }
+
+    public Skill getSkillFromSkillRepoById(long id) throws IOException {
+        return skillController.getSkillById(id);
+    }
+
+    public String addNewSkillToSkillRepo(String newSkill) throws IOException {
+        return skillController.addNewSkill(newSkill);
+    }
+// end Skills methods from Developer Controller
+
+    // Account methods from Developer Controller:
+    public void setAccountUpdateToAccountRepo(long idForUpdate, String infoForUpdate) throws IOException {
+        accountController.setAccountUpdate(idForUpdate, infoForUpdate);
+    }
+
+    public void setAccountBanToAccountRepo(long idForBan) throws IOException {
+        accountController.setAccountBan(idForBan);
+    }
+
+    public void setAccountDeleteStatusToAccountRepo(long idForDelete) throws IOException {
+        accountController.setAccountDeleteStatus(idForDelete);
+    }
+
+    public void setAccountRecoverToAccountRepo(long idForRecover) throws IOException {
+        accountController.setAccountRecover(idForRecover);
+    }
+// end Account methods from Developer Controller
 
     public void getAllFromRepo() throws IOException {
         if (repo.getAll().size() == 0L) {
-            System.out.print("Repository is empty. Select «create account», #1 on the list below\n");
+            System.out.print(REPOSITORY_EMPTY);
         }
-        for (Account account : repo.getAll()) {
-            System.out.println(account);
+        for (Developer developer : repo.getAll()) {
+            System.out.println(developer);
         }
         System.out.println();
     }
 
-    public void getAccountById(long id) throws IOException {
+    public void getDeveloperById(long id) throws IOException {
         if (repo.getAll().size() == 0L) {
-            System.out.print("Repository is empty. Select «create account», #1 on the list below\n");
+            System.out.print(REPOSITORY_EMPTY);
         }
-        for (Account account : repo.getAll()) {
-            if (account.getId() == id) {
-                System.out.println(account);
+        for (Developer developer : repo.getAll()) {
+            if (developer.getId() == id) {
+                System.out.println(developer);
             }
         }
         System.out.println();
     }
-
-    public void setAccountUpdate(long idForUpdate, String infoForUpdate) throws IOException {
-        List<Account> collectionForUpdate = repo.getAll();
-        Account account = new Account();
-
-        for (Account accounts : collectionForUpdate) {
-            if (accounts.getId() == idForUpdate) {
-                account.setId(accounts.getId());
-                account.setAccountName(infoForUpdate);
-                account.setStatus(accounts.getStatus());
-            }
-        }
-
-        repo.update(idForUpdate, account);
-        System.out.println(SUCCESSFULLY_UPDATED);
-    }
-
-    public void setAccountBan(Long idForBan) throws IOException {
-        List<Account> collectionForUpdate = repo.getAll();
-        Account account = new Account();
-
-        for (Account accounts : collectionForUpdate) {
-            if (accounts.getId().equals(idForBan)) {
-                account.setId(accounts.getId());
-                account.setAccountName(accounts.getAccountName());
-                account.setStatus(AccountStatus.BANNED);
-            }
-        }
-
-        repo.update(idForBan, account);
-        System.out.println(SUCCESSFULLY_BANNED);
-    }
-
-    public void setAccountDeleteStatus (Long idForDelete) throws IOException {
-        List<Account> collectionForUpdate = repo.getAll();
-        Account account = new Account();
-
-        for (Account accounts : collectionForUpdate) {
-            if (accounts.getId().equals(idForDelete)) {
-                account.setId(accounts.getId());
-                account.setAccountName(accounts.getAccountName());
-                account.setStatus(AccountStatus.DELETED);
-            }
-        }
-
-        repo.update(idForDelete, account);
-        System.out.println(SUCCESSFULLY_DELETED);
-    }
-
 }
 

@@ -1,3 +1,28 @@
+Project description and start up instructions
+-------------------------------------
+
+The task starts with the developer viewing menu and include some submenu. 
+
+In the console menu, you can create an account and skills that make up 
+the central table with the developers.
+
+Developer, skills, account are stored in three different data storage 
+files. The account number is the same as the developer number. 
+You can add any number of skills to any developer.
+
+The account and the developer are never deleted. 
+Only their status changes, which allows you to restore the record 
+at any time.
+
+To start, you need to run the AppRunner file.
+
+Have a nice use.
+
+-------------------------------------
+
+Original task:
+-------------------------------------
+
 Practice:
 
 You have to implement console CRUD application that has next entities:

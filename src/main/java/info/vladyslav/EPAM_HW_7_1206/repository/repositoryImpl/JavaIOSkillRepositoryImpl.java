@@ -10,10 +10,11 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class JavaIOSkillRepositoryImpl implements SkillRepository {
 
     private String fileName = "D:\\Documents\\Workspace\\EPAM\\src\\main\\resources\\skills.txt";
+
+    private static final String CAN_NOT_WRITE = "can`t write file ";
 
     @Override
     public void create(Skill skill) throws IOException {
@@ -31,7 +32,7 @@ public class JavaIOSkillRepositoryImpl implements SkillRepository {
                 writer.println(s);
             }
         } catch (IOException e) {
-            System.out.println("can`t write file " + fileName);
+            System.out.println(CAN_NOT_WRITE + fileName);
         }
     }
 
@@ -68,7 +69,6 @@ public class JavaIOSkillRepositoryImpl implements SkillRepository {
             }
             skills.add(new Skill(id, skillName));
         }
-
         return skills;
     }
 
@@ -91,10 +91,8 @@ public class JavaIOSkillRepositoryImpl implements SkillRepository {
                 writer.println(s);
             }
         } catch (IOException e) {
-            System.out.println("can`t write file " + fileName);
+            System.out.println(CAN_NOT_WRITE + fileName);
         }
-
-
     }
 
     @Override
@@ -104,7 +102,7 @@ public class JavaIOSkillRepositoryImpl implements SkillRepository {
         List<String> serializedForSaveToFile = new ArrayList<>();
 
         for (Skill skillForDelete : collectionForUpdate) {
-            if (skillForDelete.getId().equals(skill.getId())){
+            if (skillForDelete.getId().equals(skill.getId())) {
                 continue;
             }
             String stringForSaveToFile = "id = " + skillForDelete.getId() +
@@ -116,8 +114,7 @@ public class JavaIOSkillRepositoryImpl implements SkillRepository {
                 writer.println(s);
             }
         } catch (IOException e) {
-            System.out.println("can`t write file " + fileName);
+            System.out.println(CAN_NOT_WRITE + fileName);
         }
     }
-
 }

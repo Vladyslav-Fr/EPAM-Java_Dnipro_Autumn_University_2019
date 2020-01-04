@@ -3,9 +3,9 @@ package info.vladyslav.EPAM_HW_7_1206.model;
 import info.vladyslav.EPAM_HW_7_1206.auxiliary.AccountStatus;
 
 public class Account {
-    Long id;
-    String accountName;
-    AccountStatus status;
+    private Long id;
+    private String accountName;
+    private AccountStatus status;
 
     public Account() {
     }
@@ -42,11 +42,8 @@ public class Account {
 
     @Override
     public String toString() {
-        return "Account{" +
-                "id=" + id +
-                ", accountName='" + accountName + '\'' +
-                ", status=" + status +
-                '}';
+        return "AccountName='" + accountName + '\'' +
+                ", status=" + status;
     }
 
 }

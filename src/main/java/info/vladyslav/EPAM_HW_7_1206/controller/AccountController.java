@@ -14,17 +14,21 @@ public class AccountController {
     private static final String SUCCESSFULLY_BANNED = "Account successfully banned\n";
     private static final String SUCCESSFULLY_UPDATED = "Account successfully updated\n";
     private static final String SUCCESSFULLY_DELETED = "Account successfully deleted\n";
+    private static final String SUCCESSFULLY_RECOVER = "Account successfully recover\n";
+    private static final String REPOSITORY_EMPTY = "Repository is empty. " +
+            "Select «create account», #1 on the list below\n";
 
-    public String addNewAccount(String information) throws IOException {
+    public Account addNewAccount(String information) throws IOException {
         long id = repo.getLastId() + 1;
         Account account = new Account(id, information, AccountStatus.ACTIVE);
         repo.create(account);
-        return SUCCESSFULLY_CREATED;
+        System.out.println(SUCCESSFULLY_CREATED);
+        return account;
     }
 
     public void getAllFromRepo() throws IOException {
         if (repo.getAll().size() == 0L) {
-            System.out.print("Repository is empty. Select «create account», #1 on the list below\n");
+            System.out.print(REPOSITORY_EMPTY);
         }
         for (Account account : repo.getAll()) {
             System.out.println(account);
@@ -32,16 +36,17 @@ public class AccountController {
         System.out.println();
     }
 
-    public void getAccountById(long id) throws IOException {
+    public Account getAccountById(long id) throws IOException {
         if (repo.getAll().size() == 0L) {
-            System.out.print("Repository is empty. Select «create account», #1 on the list below\n");
+            System.out.print(REPOSITORY_EMPTY);
         }
         for (Account account : repo.getAll()) {
             if (account.getId() == id) {
-                System.out.println(account);
+                return account;
             }
         }
         System.out.println();
+        return null;
     }
 
     public void setAccountUpdate(long idForUpdate, String infoForUpdate) throws IOException {
@@ -76,7 +81,7 @@ public class AccountController {
         System.out.println(SUCCESSFULLY_BANNED);
     }
 
-    public void setAccountDeleteStatus (Long idForDelete) throws IOException {
+    public void setAccountDeleteStatus(Long idForDelete) throws IOException {
         List<Account> collectionForUpdate = repo.getAll();
         Account account = new Account();
 
@@ -90,6 +95,22 @@ public class AccountController {
 
         repo.update(idForDelete, account);
         System.out.println(SUCCESSFULLY_DELETED);
+    }
+
+    public void setAccountRecover(long idForRecover) throws IOException {
+        List<Account> collectionForUpdate = repo.getAll();
+        Account account = new Account();
+
+        for (Account accounts : collectionForUpdate) {
+            if (accounts.getId().equals(idForRecover)) {
+                account.setId(accounts.getId());
+                account.setAccountName(accounts.getAccountName());
+                account.setStatus(AccountStatus.ACTIVE);
+            }
+        }
+
+        repo.update(idForRecover, account);
+        System.out.println(SUCCESSFULLY_RECOVER);
     }
 
 }

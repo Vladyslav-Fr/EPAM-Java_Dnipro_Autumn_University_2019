@@ -7,10 +7,11 @@ import info.vladyslav.EPAM_HW_7_1206.repository.AccountRepository;
 import java.io.*;
 import java.util.*;
 
-
 public class JavaIOAccountRepositoryImpl implements AccountRepository {
 
     private String fileName = "D:\\Documents\\Workspace\\EPAM\\src\\main\\resources\\accounts.txt";
+
+    private static final String CAN_NOT_WRITE = "can`t write file ";
 
     @Override
     public void create(Account account) throws IOException {
@@ -29,7 +30,7 @@ public class JavaIOAccountRepositoryImpl implements AccountRepository {
                 writer.println(s);
             }
         } catch (IOException e) {
-            System.out.println("can`t write file " + fileName);
+            System.out.println(CAN_NOT_WRITE + fileName);
         }
     }
 
@@ -70,7 +71,6 @@ public class JavaIOAccountRepositoryImpl implements AccountRepository {
             }
             accounts.add(new Account(id, accountName, status));
         }
-
         return accounts;
     }
 
@@ -94,24 +94,12 @@ public class JavaIOAccountRepositoryImpl implements AccountRepository {
                 writer.println(s);
             }
         } catch (IOException e) {
-            System.out.println("can`t write file " + fileName);
+            System.out.println(CAN_NOT_WRITE + fileName);
         }
-
-
     }
-
-
-//    public static void main(String[] args) throws IOException {
-//        JavaIOAccountRepositoryImpl javaIOAccountRepository = new JavaIOAccountRepositoryImpl();
-//        List<Account> accounts = javaIOAccountRepository.getAll();
-//        System.out.println(accounts.size());
-//        System.out.println(accounts);
-//    }
-
 
     @Override
     public void delete(Account account) {
-
     }
 
 }

@@ -11,7 +11,9 @@ public interface GenericRepository<T, ID> {
     // read (cRud)
 
     T getById(ID id);
+
     Long getLastId() throws IOException;
+
     List<T> getAll() throws IOException;
 
     // update (crUd)
@@ -21,5 +23,5 @@ public interface GenericRepository<T, ID> {
     // delete (cruD)
 
     void delete(T t) throws IOException;
-    // total delete is not permitted for Account, that's why this function not realized for Account
+    // total delete is not permitted for Account and Developer, that's why this function not realized for this entities
 }

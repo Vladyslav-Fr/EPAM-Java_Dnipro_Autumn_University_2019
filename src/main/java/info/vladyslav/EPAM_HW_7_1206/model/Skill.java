@@ -1,8 +1,8 @@
 package info.vladyslav.EPAM_HW_7_1206.model;
 
 public class Skill {
-    Long id;
-    String skill;
+    private Long id;
+    private String skill;
 
     public Skill() {
     }
@@ -30,9 +30,6 @@ public class Skill {
 
     @Override
     public String toString() {
-        return "Skill{" +
-                "id=" + id +
-                ", skill='" + skill + '\'' +
-                '}';
+        return skill;
     }
 }
