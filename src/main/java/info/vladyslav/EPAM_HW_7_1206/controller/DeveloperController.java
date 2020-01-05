@@ -3,7 +3,7 @@ package info.vladyslav.EPAM_HW_7_1206.controller;
 import info.vladyslav.EPAM_HW_7_1206.model.Developer;
 import info.vladyslav.EPAM_HW_7_1206.model.Skill;
 import info.vladyslav.EPAM_HW_7_1206.repository.DeveloperRepository;
-import info.vladyslav.EPAM_HW_7_1206.repository.repositoryImpl.JavaIODeveloperRepositoryImpl;
+import info.vladyslav.EPAM_HW_7_1206.repository.io.JavaIODeveloperRepositoryImpl;
 
 import java.io.IOException;
 import java.util.Set;

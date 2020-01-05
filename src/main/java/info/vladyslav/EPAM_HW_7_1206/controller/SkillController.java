@@ -2,7 +2,7 @@ package info.vladyslav.EPAM_HW_7_1206.controller;
 
 import info.vladyslav.EPAM_HW_7_1206.model.Skill;
 import info.vladyslav.EPAM_HW_7_1206.repository.SkillRepository;
-import info.vladyslav.EPAM_HW_7_1206.repository.repositoryImpl.JavaIOSkillRepositoryImpl;
+import info.vladyslav.EPAM_HW_7_1206.repository.io.JavaIOSkillRepositoryImpl;
 
 import java.io.IOException;
 import java.util.List;

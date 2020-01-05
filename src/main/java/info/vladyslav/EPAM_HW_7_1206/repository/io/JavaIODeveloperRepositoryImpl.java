@@ -1,4 +1,4 @@
-package info.vladyslav.EPAM_HW_7_1206.repository.repositoryImpl;
+package info.vladyslav.EPAM_HW_7_1206.repository.io;
 
 import info.vladyslav.EPAM_HW_7_1206.controller.AccountController;
 import info.vladyslav.EPAM_HW_7_1206.controller.SkillController;
@@ -18,7 +18,7 @@ import java.util.Set;
 
 public class JavaIODeveloperRepositoryImpl implements DeveloperRepository {
 
-    private String fileName = "D:\\Documents\\Workspace\\EPAM\\src\\main\\resources\\developers.txt";
+    private String fileName = ".\\src\\main\\resources\\developers.txt";
     private AccountController accountController = new AccountController();
     private SkillController skillController = new SkillController();
 

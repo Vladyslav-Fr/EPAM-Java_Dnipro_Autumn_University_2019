@@ -1,9 +1,8 @@
 package info.vladyslav.EPAM_HW_7_1206.controller;
 
-import info.vladyslav.EPAM_HW_7_1206.auxiliary.AccountStatus;
 import info.vladyslav.EPAM_HW_7_1206.model.Account;
 import info.vladyslav.EPAM_HW_7_1206.repository.AccountRepository;
-import info.vladyslav.EPAM_HW_7_1206.repository.repositoryImpl.JavaIOAccountRepositoryImpl;
+import info.vladyslav.EPAM_HW_7_1206.repository.io.JavaIOAccountRepositoryImpl;
 
 import java.io.IOException;
 import java.util.List;
@@ -113,5 +112,8 @@ public class AccountController {
         System.out.println(SUCCESSFULLY_RECOVER);
     }
 
+    public enum AccountStatus {
+        ACTIVE, BANNED, DELETED
+    }
 }
 

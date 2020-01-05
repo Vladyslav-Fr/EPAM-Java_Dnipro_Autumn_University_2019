@@ -1,4 +1,4 @@
-package info.vladyslav.EPAM_HW_7_1206.repository.repositoryImpl;
+package info.vladyslav.EPAM_HW_7_1206.repository.io;
 
 import info.vladyslav.EPAM_HW_7_1206.model.Skill;
 import info.vladyslav.EPAM_HW_7_1206.repository.SkillRepository;
@@ -12,7 +12,7 @@ import java.util.List;
 
 public class JavaIOSkillRepositoryImpl implements SkillRepository {
 
-    private String fileName = "D:\\Documents\\Workspace\\EPAM\\src\\main\\resources\\skills.txt";
+    private String fileName = ".\\src\\main\\resources\\skills.txt";
 
     private static final String CAN_NOT_WRITE = "can`t write file ";
 

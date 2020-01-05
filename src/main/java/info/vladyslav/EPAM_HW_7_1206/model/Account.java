@@ -1,16 +1,16 @@
 package info.vladyslav.EPAM_HW_7_1206.model;
 
-import info.vladyslav.EPAM_HW_7_1206.auxiliary.AccountStatus;
+import info.vladyslav.EPAM_HW_7_1206.controller.AccountController;
 
 public class Account {
     private Long id;
     private String accountName;
-    private AccountStatus status;
+    private AccountController.AccountStatus status;
 
     public Account() {
     }
 
-    public Account(Long id, String accountName, AccountStatus status) {
+    public Account(Long id, String accountName, AccountController.AccountStatus status) {
         this.id = id;
         this.accountName = accountName;
         this.status = status;
@@ -32,11 +32,11 @@ public class Account {
         this.accountName = accountName;
     }
 
-    public AccountStatus getStatus() {
+    public AccountController.AccountStatus getStatus() {
         return status;
     }
 
-    public void setStatus(AccountStatus status) {
+    public void setStatus(AccountController.AccountStatus status) {
         this.status = status;
     }
 
