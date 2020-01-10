@@ -7,10 +7,6 @@ class Foo {
     public Foo() {
     }
 
-    public String getFooMessege() {
-        return this.fooMessege;
-    }
-
     public synchronized void first() {
         while (turn != 0) {
             try {
@@ -52,5 +48,29 @@ class Foo {
         Thread.currentThread().setName("C");
         this.notifyAll();
     }
+
+    private Thread[] threads = new Thread[3];
+    public String fooThreeThreads(int[] anInt) throws InterruptedException {
+        for (int i = 0; i < anInt.length; i++) {
+            switch (anInt[i]){
+                case 1:
+                    threads[i] = new Thread(this::first);
+                    break;
+                case 2:
+                    threads[i] = new Thread(this::second);
+                    break;
+                case 3:
+                    threads[i] = new Thread(this::third);
+                    break;
+            }
+            threads[i].start();
+        }
+        for (Thread thread : threads) {
+            thread.join();
+        }
+        return fooMessege;
+    }
+
+
 }
 
