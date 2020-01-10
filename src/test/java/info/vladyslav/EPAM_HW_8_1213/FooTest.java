@@ -6,6 +6,7 @@ import static org.junit.Assert.*;
 
 public class FooTest {
     private Foo fooThreeThreads = new Foo();
+
     @Test
     public void fooTest1() throws InterruptedException {
         assertEquals("firstsecondthird", fooThreeThreads.fooThreeThreads(new int[]{1, 2, 3}));
@@ -15,8 +16,5 @@ public class FooTest {
     public void fooTest2() throws InterruptedException {
         assertEquals("firstsecondthird", fooThreeThreads.fooThreeThreads(new int[]{1, 3, 2}));
     }
-
-
-
 }
 

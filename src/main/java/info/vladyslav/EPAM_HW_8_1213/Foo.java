@@ -1,5 +1,19 @@
 package info.vladyslav.EPAM_HW_8_1213;
 
+/**
+ * Task 1
+ * Suppose we have a class:
+ * public class Foo {
+ * public void first() { print("first"); }
+ * public void second() { print("second"); }
+ * public void third() { print("third"); }
+ * }
+ * The same instance of Foo will be passed to three different threads.
+ * Thread A will call first(), thread B will call second(),and thread C will call third().
+ * Design a mechanism and modify the program to ensure that second()
+ * is executed after first(), and third() is executed after second().
+ */
+
 class Foo {
     private int turn = 0;
     private String fooMessage = "";
@@ -22,7 +36,7 @@ class Foo {
         this.notifyAll();
     }
 
-    public synchronized void second()  {
+    public synchronized void second() {
         while (turn != 1) {
             try {
                 this.wait();
@@ -36,7 +50,7 @@ class Foo {
         this.notifyAll();
     }
 
-    public synchronized void third()  {
+    public synchronized void third() {
         while (turn != 2) {
             try {
                 this.wait();
@@ -44,7 +58,7 @@ class Foo {
                 e.printStackTrace();
             }
         }
-        turn = 1;
+        turn = 0;
         this.fooMessage += "third";
         Thread.currentThread().setName("C");
         this.notifyAll();
@@ -52,7 +66,7 @@ class Foo {
 
     public String fooThreeThreads(int[] sequenceOfThreads) throws InterruptedException {
         for (int i = 0; i < sequenceOfThreads.length; i++) {
-            switch (sequenceOfThreads[i]){
+            switch (sequenceOfThreads[i]) {
                 case 1:
                     threads[i] = new Thread(this::first);
                     break;
@@ -70,7 +84,5 @@ class Foo {
         }
         return fooMessage;
     }
-
-
 }
 
