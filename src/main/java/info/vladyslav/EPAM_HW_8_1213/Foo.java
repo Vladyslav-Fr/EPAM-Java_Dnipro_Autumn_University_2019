@@ -2,7 +2,8 @@ package info.vladyslav.EPAM_HW_8_1213;
 
 class Foo {
     private int turn = 0;
-    private String fooMessege = "";
+    private String fooMessage = "";
+    private Thread[] threads = new Thread[3];
 
     public Foo() {
     }
@@ -16,7 +17,7 @@ class Foo {
             }
         }
         turn = 1;
-        this.fooMessege += "first";
+        this.fooMessage += "first";
         Thread.currentThread().setName("A");
         this.notifyAll();
     }
@@ -30,7 +31,7 @@ class Foo {
             }
         }
         turn = 2;
-        this.fooMessege += "second";
+        this.fooMessage += "second";
         Thread.currentThread().setName("B");
         this.notifyAll();
     }
@@ -44,15 +45,14 @@ class Foo {
             }
         }
         turn = 1;
-        this.fooMessege += "third";
+        this.fooMessage += "third";
         Thread.currentThread().setName("C");
         this.notifyAll();
     }
 
-    private Thread[] threads = new Thread[3];
-    public String fooThreeThreads(int[] anInt) throws InterruptedException {
-        for (int i = 0; i < anInt.length; i++) {
-            switch (anInt[i]){
+    public String fooThreeThreads(int[] sequenceOfThreads) throws InterruptedException {
+        for (int i = 0; i < sequenceOfThreads.length; i++) {
+            switch (sequenceOfThreads[i]){
                 case 1:
                     threads[i] = new Thread(this::first);
                     break;
@@ -68,7 +68,7 @@ class Foo {
         for (Thread thread : threads) {
             thread.join();
         }
-        return fooMessege;
+        return fooMessage;
     }
 
 
