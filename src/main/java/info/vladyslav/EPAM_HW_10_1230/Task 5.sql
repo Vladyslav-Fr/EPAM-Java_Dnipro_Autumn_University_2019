@@ -1,10 +1,10 @@
-CREATE TABLE `epam`.`customers`
+CREATE TABLE IF NOT EXISTS`epam`.`customers`
 (
     `Id`   INT          NOT NULL,
     `Name` VARCHAR(255) NULL,
     PRIMARY KEY (`Id`)
 );
-CREATE TABLE `epam`.`orders`
+CREATE TABLE IF NOT EXISTS`epam`.`orders`
 (
     `Id`         INT         NOT NULL,
     `CustomerId` VARCHAR(45) NULL,
