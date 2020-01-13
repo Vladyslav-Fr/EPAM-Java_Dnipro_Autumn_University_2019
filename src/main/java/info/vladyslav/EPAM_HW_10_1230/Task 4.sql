@@ -1,4 +1,4 @@
-CREATE TABLE `person`
+CREATE TABLE IF NOT EXISTS `person`
 (
     `Id`    INT          NOT NULL,
     `Email` VARCHAR(255) NULL,
